@@ -10,7 +10,6 @@ import mlflow
 
 # Autolog is used to log everything automatically by them self
 
-mlflow.autolog()
 
 
 # Set MLflow tracking URI to DAGsHub (not GitHub!)
@@ -53,6 +52,8 @@ best_score=gcv.best_score_
 
 # Log metrics, parameters, and artifacts with MLflow
 with mlflow.start_run(run_name='444'):
+    mlflow.log_param('best_paramaters',best_param)
+    mlflow.log_param('Accuracy',best_score)
     mlflow.log_artifact(__file__) 
     mlflow.set_tag('author','Shashank')
     mlflow.set_tag('model','Random Forest')
