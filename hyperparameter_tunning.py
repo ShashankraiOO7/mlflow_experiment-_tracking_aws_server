@@ -52,8 +52,15 @@ best_score=gcv.best_score_
 
 # Log metrics, parameters, and artifacts with MLflow
 with mlflow.start_run(run_name='444'):
+    
+    for i, param in enumerate(gcv.cv_results_['params']):
+        with mlflow.start_run(nested=True) as child:
+            # Log parameters and mean test score
+            mlflow.log_params(param)
+            mlflow.log_param('mean_test_score', gcv.cv_results_['mean_test_score'][i])
     mlflow.log_param('best_paramaters',best_param)
     mlflow.log_param('Accuracy',best_score)
     mlflow.log_artifact(__file__) 
     mlflow.set_tag('author','Shashank')
     mlflow.set_tag('model','Random Forest')
+        
