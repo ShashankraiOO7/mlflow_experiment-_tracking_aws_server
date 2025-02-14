@@ -67,7 +67,23 @@ with mlflow.start_run(run_name='444'):
     mlflow.log_artifact(__file__)
 
     mlflow.sklearn.log_model(clf, "Random Forest")
+    
+    #Making DataFrame...
+    train_df = pd.DataFrame(X_train, columns=X.columns)  
+    test_df = pd.DataFrame(X_test, columns=X.columns)
+    # making Output
+    train_df['Output']=y_train
+    test_df['Output']=y_test
+    
+    # MLflow input data format mein convert karein
+    train_df_mlflow = mlflow.data.from_pandas(train_df)
+    test_df_mlflow = mlflow.data.from_pandas(test_df)
 
+    # MLflow mein input data ko log karein
+    mlflow.log_input(train_df_mlflow, 'train')
+    mlflow.log_input(test_df_mlflow, 'validation') 
+    
+      
     mlflow.set_tag('author','Shashank')
     mlflow.set_tag('model','Random Forest')
 
