@@ -8,10 +8,10 @@ import matplotlib.pyplot as plt
 import dagshub
 
 # Initialize DAGsHub integration
-dagshub.init(repo_owner='ShashankraiOO7', repo_name='mlfow_dagshub_experiment_tracking', mlflow=True)
+#dagshub.init(repo_owner='ShashankraiOO7', repo_name='mlfow_dagshub_experiment_tracking', mlflow=True)
 
 # Set MLflow tracking URI to DAGsHub (not GitHub!)
-mlflow.set_tracking_uri('https://dagshub.com/ShashankraiOO7/mlfow_dagshub_experiment_tracking.mlflow')
+mlflow.set_tracking_uri('http://ec2-13-53-87-54.eu-north-1.compute.amazonaws.com:5000')
 
 # Set MLflow experiment
 mlflow.set_experiment('new_one')
